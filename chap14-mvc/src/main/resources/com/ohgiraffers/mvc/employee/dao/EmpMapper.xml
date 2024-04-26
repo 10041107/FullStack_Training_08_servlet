@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.mvc.employee.dao.EmpMapper">
+
+    <resultMap id="empMap" type="com.ohgiraffers.mvc.employee.dto.EmpDTO">
+        <id property="empId" column="EMP_ID"/>
+        <result property="empName" column="EMP_NAME"/>
+        <result property="email" column="EMAIL"/>
+        <result property="phone" column="PHONE"/>
+    </resultMap>
+
+    <select id="selectByEmpId" resultMap="empMap">
+        SELECT
+            EMP_ID,
+            EMP_NAME,
+            EMAIL,
+            PHONE
+          FROM EMPLOYEE
+         WHERE EMP_ID = #{empId}
+    </select>
+
+    <select id="selectAllEmp" resultMap="empMap">
+        SELECT
+            EMP_ID,
+            EMP_NAME,
+            EMAIL,
+            PHONE
+        FROM EMPLOYEE
+    </select>
+
+    <insert id="insert" parameterType="com.ohgiraffers.mvc.employee.dto.EmpInsertDTO">
+        INSERT INTO employee(
+            EMP_ID,
+            EMP_NAME ,
+            EMP_NO ,
+            EMAIL ,
+            PHONE ,
+            DEPT_CODE ,
+            JOB_CODE ,
+            SAL_LEVEL ,
+            SALARY ,
+            BONUS ,
+            MANAGER_ID ,
+            HIRE_DATE ,
+            ENT_YN
+        ) values (
+            #{empId},
+            #{empName},
+            #{empNo},
+            #{email},
+            #{phone},
+            #{deptCode},
+            #{jobCode},
+            #{salLevel},
+            #{salary},
+            #{bonus},
+            #{managerId},
+            #{hireDate},
+            'Y'
+        )
+    </insert>
+</mapper>
